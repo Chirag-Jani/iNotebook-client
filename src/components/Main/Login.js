@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   let navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
@@ -32,14 +32,17 @@ const Login = () => {
 
     let data = await res.json();
     if (data.authToken) {
+      localStorage.setItem("token", data.authToken);
+      props.showAlert("Logged in Successfully", "success");
       navigate("/");
     } else {
-      alert("Invalid");
+      props.showAlert("Error Signing in", "danger");
     }
   };
 
   return (
     <div className="container">
+      <h2 className="my-3">Login to continue to iNotebook</h2>
       <form onSubmit={login}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

@@ -7,10 +7,11 @@ const NoteItem = (props) => {
 
   const onDelete = () => {
     deleteNote(note._id);
+    props.showAlert("Note Deleted Successfully", "success");
   };
 
   return (
-    <div className="col-3 ">
+    <div className="col-3 me-3">
       <div className="card my-3">
         <div className="card-body">
           <h5 className="card-title"> {note.title}</h5>

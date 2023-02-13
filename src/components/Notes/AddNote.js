@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../../context/notes/NoteContext";
 
-const AddNote = () => {
+const AddNote = (props) => {
   const noteFunctions = useContext(NoteContext);
 
   const [noteInput, setNoteInput] = useState({
@@ -24,6 +24,7 @@ const AddNote = () => {
       noteInput.description,
       noteInput.tag
     );
+    props.showAlert("Note Added Successfully", "success");
   };
   return (
     <div className="mx-auto">
